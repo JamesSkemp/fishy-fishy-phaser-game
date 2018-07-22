@@ -1,8 +1,9 @@
-# Starter Project for Phaser 3 with Visual Studio Code, TypeScript, and NodeJS
+# Fishy-Fishy, Example Phaser 3 Game
+The following is a game developed using Phaser 3 and TypeScript, using NodeJS and Visual Studio Code for development.
 
-The following is a starter project to get started with a new game in Phaser 3 and Visual Studio Code, using TypeScript and NodeJS.
+Phaser starter projects can be found at https://github.com/JamesSkemp/phaser-starter-templates.
 
-## What this Provides
+## What the Base Project Provides
 
 - src
 	- assets
