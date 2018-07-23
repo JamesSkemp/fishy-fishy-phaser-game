@@ -10,7 +10,7 @@ export default class Preloader extends Phaser.Scene {
 		var progressBar = this.add.graphics();
 		var progressBox = this.add.graphics();
 		progressBox.fillStyle(0x222222, 0.8);
-		progressBox.fillRect(480 / 4, 640 / 2 - 30, 480 / 2, 50);
+		progressBox.fillRect(640 / 4, 480 / 2 - 30, 640 / 2, 50);
 		
 		var width = this.cameras.main.width;
 		var height = this.cameras.main.height;
@@ -52,7 +52,7 @@ export default class Preloader extends Phaser.Scene {
 			percentText.setText(parseInt(value * 100 + '') + '%');
 			progressBar.clear();
 			progressBar.fillStyle(0xffffff, 1);
-			progressBar.fillRect((480 / 4) + 10, (640 / 2) - 30 + 10, (480 / 2 - 10 - 10) * value, 30);
+			progressBar.fillRect((640 / 4) + 10, (480 / 2) - 30 + 10, (640 / 2 - 10 - 10) * value, 30);
 		});
 		
 		this.load.on('fileprogress', function (file) {
@@ -69,6 +69,13 @@ export default class Preloader extends Phaser.Scene {
 
 		this.load.path = 'assets/';
 		this.load.image('transparent');
+
+		// This will eventually use the spritesheet, but for now add each image individually.
+		// See https://stackoverflow.com/a/8043061/11912 for number formatting.
+		this.load.path = 'assets/kenney_fishpack/PNG/Default size/';
+		for (let i = 1; i <= 126; i++) {
+			this.load.image('fishTile_' + ('00' + i).slice(-3));
+		}
 	}
 
 	create(): void {

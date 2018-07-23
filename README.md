@@ -42,3 +42,6 @@ If you'd like to run a simple web server, install http-server via `npm install h
 To upgrade Phaser CE run `npm upgrade phaser` (passing `--save` if you wish to update the package.json).
 
 Phaser TypeScript definitions can currently be found at https://github.com/photonstorm/phaser3-docs/tree/master/typescript
+
+## Credits
+Assets from [Kenney's Fish Pack](https://kenney.nl/assets/fish-pack).
