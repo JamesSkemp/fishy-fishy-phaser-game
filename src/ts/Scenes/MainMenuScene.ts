@@ -1,3 +1,5 @@
+import MainGame from "./MainGame";
+
 export default class MainMenuScene extends Phaser.Scene {
 	/**
 	 * Unique name of the scene.
@@ -9,6 +11,8 @@ export default class MainMenuScene extends Phaser.Scene {
 
 	create(): void {
 		console.log((new Date).toISOString() + ' : Entered MainMenu create()');
+
+		this.scene.start(MainGame.Name);
 	}
 
 	update() : void {
