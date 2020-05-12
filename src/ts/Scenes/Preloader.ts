@@ -31,7 +31,9 @@ export default class Preloader extends Phaser.Scene {
 			// 038-045, 056-063 = dark sand top
 			// 054-055 = dark sand shell
 			// 088-089 = water
-			// 010-017, 028-035, 046-053, 064-071 = foliage
+			// 010-017, 028-035, 046-053 = foliage
+			// 064-071 = background foliage
+			// 082-085 = rocks
 			this.load.image('fishTile_' + ('00' + i).slice(-3));
 		}
 	}

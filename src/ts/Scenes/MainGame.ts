@@ -7,7 +7,12 @@ export default class MainGame extends Phaser.Scene {
 	public static Name: string = "MainGame";
 
 	public preload(): void {
-		this.cameras.main.setBackgroundColor('#A1D6E7');
+		// color of background in sprite set
+		//this.cameras.main.setBackgroundColor('#A1D6E7');
+		// lighter color that may work
+		//this.cameras.main.setBackgroundColor('#B3DEEB');
+		// lighter color that definitely works
+		this.cameras.main.setBackgroundColor('#BDE2EE');
 	}
 
 	public create(): void {
@@ -16,44 +21,53 @@ export default class MainGame extends Phaser.Scene {
 		this.add.image(this.cameras.main.centerX, this.cameras.main.centerY, "Phaser-Logo-Small");
 
 		this.addSeaFloor();
+
+		// TODO remove next two test sprites
+		this.add.sprite(this.cameras.main.centerX, this.cameras.main.centerY, 'fishTile_' + '064');
+		this.add.sprite(15, 15, 'fishTile_' + '065');
 	}
 
+	/**
+	 * Adds a sea floor to the game.
+	 */
 	addSeaFloor(): void {
 		const gameHeight = this.cameras.main.height;
 		const gameWidth = this.cameras.main.width;
 
-		//const topTiles = ['002', '003', '004', '005', '006', '007', '008', '009', '020', '021', '022', '023', '024', '025', '026', '027'];
-		//const topTiles = ['020', '021', '022', '023', '024', '025', '026', '027'];
-		const topTiles = ['020', '021', '024', '025', '026', '027'];
-		const topTilesOption1 = ['022', '023', '027', '024', '025', '026', '025', '021', '021', '025'];
-		const topTilesOption2 = ['022', '023', '027', '024', '025', '021', '026', '025', '021', '026'];
-		//const topTiles = Phaser.Math.Between(0, 1) === 1 ? topTilesOption1 : topTilesOption2;
+		// Set the tiles that go well together for the upper layer of the sea floor.
+		const topTilesDark = ['056', '057', '060', '061', '062', '063'];
+		const topTilesLight = ['020', '021', '024', '025', '026', '027'];
+		// TODO make this a setting?
+		const useDarkTiles = (Phaser.Math.Between(0, 1) === 1);
 
-		//const topTilesOption1 = [];
+		const topTiles = useDarkTiles ? topTilesDark : topTilesLight;
 
-		// '022', '023', '027', '024', '025', '026', '025', '021', '021', '025'
-		// '022', '023', '027', '024', '025', '021', '026', '025', '021'
-		// '021', '021', '025'
-		// '020', '024', '025', '021', '026'
-		// '026', '025', '021'
-		// '025', '024'
-
-
-		console.log(this.cameras.main.height);
 		// 64x64, 001 and 126
 		// 001-009, 018-027 = light sand
 		// 126 = solid light sand?
+		// Loop through the width of the screen adding a bottom and top sea layer.
 		for (let i = 0; i < Math.ceil(gameWidth / 64); i++) {
-			let bottomTile = '001';
+			let bottomTile: string;
 			if (Phaser.Math.Between(0, 10) > 9) {
-				bottomTile = Phaser.Math.Between(0, 1) === 1 ? '018' : '019';
+				// Add a random sea shell.
+				if (useDarkTiles) {
+					bottomTile = Phaser.Math.Between(0, 1) === 1 ? '054' : '055';
+				} else {
+					bottomTile = Phaser.Math.Between(0, 1) === 1 ? '018' : '019';
+				}
+			} else {
+				if (useDarkTiles) {
+					bottomTile = Phaser.Math.Between(0, 1) === 1 ? '036' : '037';
+				} else {
+					bottomTile = Phaser.Math.Between(0, 1) === 1 ? '001' : '126';
+				}
 			}
 			const topTile = topTiles[Phaser.Math.Between(0, topTiles.length - 1)];
-			//const topTile = topTiles[i];
 
 			let bottomSeaFloor = this.add.sprite(64 * i, gameHeight, 'fishTile_' + bottomTile).setOrigin(0, 1);
+			// TODO add foliage
 			let topSeaFloor = this.add.sprite(64 * i, gameHeight - 64, 'fishTile_' + topTile).setOrigin(0, 1);
-			console.log(topTile);
+			//console.log(topTile);
 		}
 	}
 }
