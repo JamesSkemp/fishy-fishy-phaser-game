@@ -19,6 +19,14 @@ export default class Preloader extends Phaser.Scene {
 		// See https://stackoverflow.com/a/8043061/11912 for number formatting.
 		this.load.path = 'assets/kenney_fishpack/PNG/Default size/';
 		for (let i = 1; i <= 126; i++) {
+			// 64x64
+			// 072-081, 100-107 = fish
+			// 090-099 = skeletons
+			// 108-117 = numbers
+			// 123-125 = bubbles
+			// 001-009, 018-027 = light sand
+			// 126 = solid light sand?
+			// 088-089 = water
 			this.load.image('fishTile_' + ('00' + i).slice(-3));
 		}
 	}
