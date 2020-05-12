@@ -1,6 +1,9 @@
 {
 	"compilerOptions": {
-		"target": "es5",
-		"rootDir": "./src/ts/"
+		"target": "es2017",
+		"module": "commonjs",
+		"esModuleInterop": true,
+		"rootDir": "./src/ts/",
+		"sourceMap": true
 	}
 }

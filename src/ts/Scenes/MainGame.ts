@@ -1,16 +1,17 @@
+import Utilities from "../Utilities";
+
 export default class MainGame extends Phaser.Scene {
 	/**
 	 * Unique name of the scene.
 	 */
 	public static Name: string = "MainGame";
 
-	preload(): void {
+	public preload(): void {
 	}
 
-	create(): void {
-		console.log((new Date).toISOString() + ' : Entered MainGame create()');
-	}
+	public create(): void {
+		Utilities.LogSceneMethodEntry("MainGame", "create");
 
-	update() : void {
+		this.add.image(this.cameras.main.centerX, this.cameras.main.centerY, "Phaser-Logo-Small");
 	}
 }

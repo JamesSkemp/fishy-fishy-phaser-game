@@ -1,4 +1,5 @@
 import Preloader from "./Preloader";
+import Utilities from "../Utilities";
 
 export default class Boot extends Phaser.Scene {
 	/**
@@ -6,10 +7,12 @@ export default class Boot extends Phaser.Scene {
 	 */
 	public static Name: string = "Boot";
 
-	preload(): void {
+	public preload(): void {
 	}
-	
-	create() : void {
+
+	public create(): void {
+		Utilities.LogSceneMethodEntry("Boot", "create");
+
 		this.scene.start(Preloader.Name);
 	}
 }
