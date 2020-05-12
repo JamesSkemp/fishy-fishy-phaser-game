@@ -14,18 +14,18 @@
 	},
 	"homepage": "https://github.com/JamesSkemp/fishy-fishy-phaser-game",
 	"dependencies": {
-		"phaser": "^3.11.0"
+		"phaser": "^3.23.0"
 	},
 	"devDependencies": {
-		"browserify": "^14.5.0",
-		"glob": "^7.1.2",
+		"browserify": "^16.5.1",
+		"glob": "^7.1.6",
 		"gulp": "^3.9.1",
 		"gulp-concat": "^2.6.1",
 		"gulp-typescript": "^3.2.3",
-		"gulp-uglify": "^3.0.0",
+		"gulp-uglify": "^3.0.2",
 		"pump": "^3.0.0",
 		"tsify": "^3.0.3",
-		"typescript": "^2.6.2",
+		"typescript": "^3.8.3",
 		"vinyl-buffer": "^1.0.0",
 		"vinyl-source-stream": "^1.1.0"
 	}
