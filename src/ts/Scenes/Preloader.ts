@@ -24,9 +24,14 @@ export default class Preloader extends Phaser.Scene {
 			// 090-099 = skeletons
 			// 108-117 = numbers
 			// 123-125 = bubbles
-			// 001-009, 018-027 = light sand
-			// 126 = solid light sand?
+			// 002-009, 020-027 = light sand top
+			// 018-019 = light sand shell
+			// 001, 126 = solid light sand
+			// 036-037 = solid dark sand
+			// 038-045, 056-063 = dark sand top
+			// 054-055 = dark sand shell
 			// 088-089 = water
+			// 010-017, 028-035, 046-053, 064-071 = foliage
 			this.load.image('fishTile_' + ('00' + i).slice(-3));
 		}
 	}
