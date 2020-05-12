@@ -53,10 +53,11 @@ export default class Preloader extends Phaser.Scene {
 	private addProgressBar(): void {
 		const width = this.cameras.main.width;
 		const height = this.cameras.main.height;
+		const outerTextColor = '#202A2E';
 
 		const progressBar = this.add.graphics();
 		const progressBox = this.add.graphics();
-		progressBox.fillStyle(0x222222, 0.8);
+		progressBox.fillStyle(0x40555C, 0.8);
 		progressBox.fillRect(width / 4, height / 2 - 30, width / 2, 50);
 
 		const loadingText = this.make.text({
@@ -65,7 +66,7 @@ export default class Preloader extends Phaser.Scene {
 			text: "Loading...",
 			style: {
 				font: "20px monospace",
-				fill: "#ffffff"
+				fill: outerTextColor
 			}
 		});
 		loadingText.setOrigin(0.5, 0.5);
@@ -87,20 +88,20 @@ export default class Preloader extends Phaser.Scene {
 			text: "",
 			style: {
 				font: "18px monospace",
-				fill: "#ffffff"
+				fill: outerTextColor
 			}
 		});
 
 		assetText.setOrigin(0.5, 0.5);
 
-		this.load.on("progress", (value) => {
+		this.load.on("progress", (value: number) => {
 			percentText.setText(parseInt(value * 100 + "", 10) + "%");
 			progressBar.clear();
 			progressBar.fillStyle(0xffffff, 1);
 			progressBar.fillRect((width / 4) + 10, (height / 2) - 30 + 10, (width / 2 - 10 - 10) * value, 30);
 		});
 
-		this.load.on("fileprogress", (file) => {
+		this.load.on("fileprogress", (file: Phaser.Loader.File) => {
 			assetText.setText("Loading asset: " + file.key);
 		});
 

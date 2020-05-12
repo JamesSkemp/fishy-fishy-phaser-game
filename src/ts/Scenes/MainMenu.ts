@@ -20,7 +20,7 @@ export default class MainMenu extends Phaser.Scene {
 		newGameText
 			.setFontFamily("monospace")
 			.setFontSize(40)
-			.setFill("#fff")
+			.setFill("#202A2E")
 			.setAlign("center")
 			.setOrigin(0.5);
 		newGameText.setInteractive();
@@ -28,9 +28,11 @@ export default class MainMenu extends Phaser.Scene {
 
 		const settingsText = this.add.text(this.cameras.main.centerX, textYPosition * 2, "Settings");
 		settingsText.setOrigin(0.5);
-		settingsText.setFontFamily("monospace").setFontSize(30).setFill("#fff");
+		settingsText.setFontFamily("monospace").setFontSize(30).setFill("#202A2E");
 		settingsText.setInteractive();
 		settingsText.on("pointerdown", () => { this.scene.start(MainSettings.Name); }, this);
+
+		// TODO have fish come in from left or right side randomly
 	}
 
 	public update(): void {

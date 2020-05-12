@@ -14,13 +14,15 @@ export default class SplashScreen extends Phaser.Scene {
 	public create(): void {
 		Utilities.LogSceneMethodEntry("SplashScreen", "create");
 
+		const textColor = '#202A2E';
+
 		const titleText = this.add.text(this.cameras.main.centerX, this.cameras.main.centerY * 0.5, "Fishy-Fishy")
 			.setOrigin(0.5, 0)
-			.setFontFamily("monospace").setFontSize(26).setFill("#fff");
+			.setFontFamily("monospace").setFontSize(26).setFill(textColor);
 
 		const poweredByText = this.add.text(this.cameras.main.centerX, this.cameras.main.centerY - 25, "Powered By");
 		poweredByText.setOrigin(0.5, 0.5);
-		poweredByText.setFontFamily("monospace").setFontSize(20).setFill("#fff");
+		poweredByText.setFontFamily("monospace").setFontSize(20).setFill(textColor);
 		this.add.image(this.cameras.main.centerX, this.cameras.main.centerY, "phaser_pixel_medium_flat");
 
 		this.input.setDefaultCursor("pointer");

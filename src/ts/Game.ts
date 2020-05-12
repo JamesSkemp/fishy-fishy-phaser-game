@@ -11,7 +11,14 @@ const gameConfig: Phaser.Types.Core.GameConfig = {
 	height: 480,
 	type: Phaser.AUTO,
 	parent: "content",
-	title: "Fishy-Fishy"
+	title: "Fishy-Fishy",
+	// color of background in sprite set
+	//this.cameras.main.setBackgroundColor('#A1D6E7');
+	// lighter color that may work
+	//this.cameras.main.setBackgroundColor('#B3DEEB');
+	// lighter color that definitely works
+	//this.cameras.main.setBackgroundColor('#BDE2EE');
+	backgroundColor: '#BDE2EE'
 };
 
 export default class Game extends Phaser.Game {

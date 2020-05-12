@@ -7,12 +7,6 @@ export default class MainGame extends Phaser.Scene {
 	public static Name: string = "MainGame";
 
 	public preload(): void {
-		// color of background in sprite set
-		//this.cameras.main.setBackgroundColor('#A1D6E7');
-		// lighter color that may work
-		//this.cameras.main.setBackgroundColor('#B3DEEB');
-		// lighter color that definitely works
-		this.cameras.main.setBackgroundColor('#BDE2EE');
 	}
 
 	public create(): void {
@@ -21,10 +15,6 @@ export default class MainGame extends Phaser.Scene {
 		this.add.image(this.cameras.main.centerX, this.cameras.main.centerY, "Phaser-Logo-Small");
 
 		this.addSeaFloor();
-
-		// TODO remove next two test sprites
-		this.add.sprite(this.cameras.main.centerX, this.cameras.main.centerY, 'fishTile_' + '064');
-		this.add.sprite(15, 15, 'fishTile_' + '065');
 	}
 
 	/**
@@ -33,6 +23,21 @@ export default class MainGame extends Phaser.Scene {
 	addSeaFloor(): void {
 		const gameHeight = this.cameras.main.height;
 		const gameWidth = this.cameras.main.width;
+
+		// 064-071 = background foliage
+		const backgroundFoliageTiles = ['064', '065', '066', '067', '068', '069', '070', '071']
+		const foliageStartY = gameHeight - 112;
+		for (let i = 0; i < 4; i++) {
+			const backgroundFoliageTile = backgroundFoliageTiles[Phaser.Math.Between(0, backgroundFoliageTiles.length - 1)];
+			const startNumber = (25 * i) + 1;
+			const endNumber = (i + 1) * 25;
+			const foliageStartX = gameWidth * (Phaser.Math.Between(startNumber, endNumber) / 100);
+			const randomScale = 1 + (Phaser.Math.Between(2, 6) / 10);
+			this.add.sprite(foliageStartX, foliageStartY, 'fishTile_' + backgroundFoliageTile).setOrigin(0, 1).setScale(randomScale);
+		}
+
+		// 010-017, 028-035, 046-053 = foliage
+
 
 		// Set the tiles that go well together for the upper layer of the sea floor.
 		const topTilesDark = ['056', '057', '060', '061', '062', '063'];
