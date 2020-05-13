@@ -5,6 +5,7 @@ export default class MainGame extends Phaser.Scene {
 	 * Unique name of the scene.
 	 */
 	public static Name: string = "MainGame";
+	fishGroup: Phaser.GameObjects.Group;
 
 	public preload(): void {
 	}
@@ -13,6 +14,68 @@ export default class MainGame extends Phaser.Scene {
 		Utilities.LogSceneMethodEntry("MainGame", "create");
 
 		this.addSeaFloor();
+
+		this.fishGroup = this.add.group({
+			defaultKey: 'fishTile_072',
+			maxSize: 25,
+			createCallback: (fish) => {
+				console.log('create');
+				//console.log(fish);
+			},
+			removeCallback: (fish) => {
+				console.log('removed');
+				//console.log(fish);
+			}
+		});
+		console.log(this.fishGroup);
+
+		// TODO random
+		this.time.addEvent({
+			delay: 2000,
+			loop: true,
+			callback: this.addFish,
+			callbackScope: this
+		});
+	}
+
+	public update(): void {
+		const heightToBottom = this.cameras.main.height - 152;
+		const killX = this.cameras.main.width + 50;
+		// TODO support fish moving from right to left as well
+		Phaser.Actions.IncX(this.fishGroup.getChildren(), 1);
+
+		this.fishGroup.children.iterate((fish: Phaser.GameObjects.Sprite) => {
+			const randomNumber = Phaser.Math.Between(0, 10);
+			if (randomNumber > 6) {
+				// TODO this jitters too much. Make a custom sprite and store whether it moved, and in what direction?
+				if (randomNumber > 8) {
+					if (fish.y < heightToBottom) {
+						fish.y++;
+					}
+				} else {
+					if (fish.y > 16) {
+						fish.y--;
+					}
+				}
+			}
+
+			if (fish.x > killX || fish.x < -50) {
+				this.fishGroup.killAndHide(fish);
+			}
+		});
+	}
+
+	addFish(): void {
+		const fishTiles = ['073', '075', '077', '079', '081', '101', '103'];
+
+		let fish: Phaser.GameObjects.Sprite = this.fishGroup.get(-25, Phaser.Math.Between(16, this.cameras.main.height - 160));
+		if (!fish) {
+			// There are no free fish in the group.
+			return;
+		}
+		// 072-081, 100-107 = fish
+		fish.setTexture('fishTile_' + fishTiles[Phaser.Math.Between(0, fishTiles.length - 1)]);
+		fish.setActive(true).setVisible(true);
 	}
 
 	/**
@@ -74,9 +137,7 @@ export default class MainGame extends Phaser.Scene {
 			const topTile = topTiles[Phaser.Math.Between(0, topTiles.length - 1)];
 
 			let bottomSeaFloor = this.add.sprite(64 * i, gameHeight, 'fishTile_' + bottomTile).setOrigin(0, 1);
-			// TODO add foliage
 			let topSeaFloor = this.add.sprite(64 * i, gameHeight - 64, 'fishTile_' + topTile).setOrigin(0, 1);
-			//console.log(topTile);
 		}
 	}
 }
