@@ -14,6 +14,7 @@ const gameConfig: Phaser.Types.Core.GameConfig = {
 	title: "Fishy-Fishy",
 	// color of background in sprite set
 	//this.cameras.main.setBackgroundColor('#A1D6E7');
+	// See https://www.tutorialrepublic.com/html-reference/html-color-picker.php for other color options
 	// lighter color that may work
 	//this.cameras.main.setBackgroundColor('#B3DEEB');
 	// lighter color that definitely works

@@ -23,7 +23,8 @@ export default class SplashScreen extends Phaser.Scene {
 		const poweredByText = this.add.text(this.cameras.main.centerX, this.cameras.main.centerY - 25, "Powered By");
 		poweredByText.setOrigin(0.5, 0.5);
 		poweredByText.setFontFamily("monospace").setFontSize(20).setFill(textColor);
-		this.add.image(this.cameras.main.centerX, this.cameras.main.centerY, "phaser_pixel_medium_flat");
+		//this.add.image(this.cameras.main.centerX, this.cameras.main.centerY, "phaser_pixel_medium_flat");
+		this.add.image(this.cameras.main.centerX, this.cameras.main.centerY + 100, "Phaser-Logo-Small").setScale(0.5);
 
 		this.input.setDefaultCursor("pointer");
 		this.input.on("pointerdown", this.loadMainMenu, this);

@@ -12,8 +12,6 @@ export default class MainGame extends Phaser.Scene {
 	public create(): void {
 		Utilities.LogSceneMethodEntry("MainGame", "create");
 
-		this.add.image(this.cameras.main.centerX, this.cameras.main.centerY, "Phaser-Logo-Small");
-
 		this.addSeaFloor();
 	}
 
@@ -24,9 +22,10 @@ export default class MainGame extends Phaser.Scene {
 		const gameHeight = this.cameras.main.height;
 		const gameWidth = this.cameras.main.width;
 
+		const foliageStartY = gameHeight - 112;
+
 		// 064-071 = background foliage
 		const backgroundFoliageTiles = ['064', '065', '066', '067', '068', '069', '070', '071']
-		const foliageStartY = gameHeight - 112;
 		for (let i = 0; i < 4; i++) {
 			const backgroundFoliageTile = backgroundFoliageTiles[Phaser.Math.Between(0, backgroundFoliageTiles.length - 1)];
 			const startNumber = (25 * i) + 1;
@@ -37,7 +36,12 @@ export default class MainGame extends Phaser.Scene {
 		}
 
 		// 010-017, 028-035, 046-053 = foliage
-
+		const foliageTiles = ['010', '011', '012', '013', '014', '015', '016', '017', '028', '029', '030', '031', '032', '033', '034', '035', '046', '047', '048', '049', '050', '051', '052', '053'];
+		const numberOfFoliage = Phaser.Math.Between(8, 15);
+		for (let i = 0; i < numberOfFoliage; i++) {
+			const foliageTile = foliageTiles[Phaser.Math.Between(0, foliageTiles.length - 1)];
+			this.add.sprite(Phaser.Math.Between(0, gameWidth), foliageStartY, 'fishTile_' + foliageTile).setOrigin(0, 1).setScale(1);
+		}
 
 		// Set the tiles that go well together for the upper layer of the sea floor.
 		const topTilesDark = ['056', '057', '060', '061', '062', '063'];
